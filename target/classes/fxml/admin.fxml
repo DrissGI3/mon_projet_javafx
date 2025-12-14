@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            stylesheets="@../css/admin.css"
+            prefWidth="900" prefHeight="600">
+
+    <!-- Left Sidebar -->
+    <left>
+        <VBox styleClass="menu-bar">
+            <!--- Logo / Title Area -->
+            <VBox styleClass="menu-title-box">
+                <Label text="ClinicCare" styleClass="menu-title"/>
+                <Label text="Admin Portal" styleClass="menu-subtitle"/>
+            </VBox>
+
+            <!-- Navigation Buttons -->
+            <Button text="Dashboard" styleClass="nav-button" maxWidth="Infinity"/>
+            <Button text="Patients" styleClass="nav-button" maxWidth="Infinity"/>
+            <Button text="Docteurs" styleClass="nav-button" maxWidth="Infinity"/>
+            <Button text="Rendez-vous" styleClass="nav-button" maxWidth="Infinity"/>
+            <Region VBox.vgrow="ALWAYS" /> <!-- Spacer -->
+            <Button text="Déconnexion" styleClass="nav-button" maxWidth="Infinity"/>
+        </VBox>
+    </left>
+
+    <!-- Main Content Area -->
+    <center>
+        <BorderPane>
+            <!-- Top Bar -->
+            <top>
+                <HBox styleClass="top-bar">
+                    <Label text="Bienvenue, Administrateur" styleClass="user-label"/>
+                </HBox>
+            </top>
+
+            <!-- Dashboard Content -->
+            <center>
+                <VBox styleClass="content-area">
+                    <Label text="Vue d'ensemble" styleClass="section-title"/>
+
+                    <!-- Stats Grid -->
+                    <HBox spacing="20">
+                        <!-- Card 1 -->
+                        <VBox styleClass="stat-card, card-blue">
+                            <Label text="TOTAL PATIENTS" styleClass="card-title"/>
+                            <Label text="1,240" styleClass="card-value"/>
+                        </VBox>
+
+                        <!-- Card 2 -->
+                        <VBox styleClass="stat-card, card-green">
+                            <Label text="RENDEZ-VOUS AUJOURD'HUI" styleClass="card-title"/>
+                            <Label text="18" styleClass="card-value"/>
+                        </VBox>
+
+                        <!-- Card 3 -->
+                        <VBox styleClass="stat-card, card-orange">
+                            <Label text="DOCTEURS DISPONIBLES" styleClass="card-title"/>
+                            <Label text="8" styleClass="card-value"/>
+                        </VBox>
+                    </HBox>
+
+                </VBox>
+            </center>
+        </BorderPane>
+    </center>
+
+</BorderPane>
