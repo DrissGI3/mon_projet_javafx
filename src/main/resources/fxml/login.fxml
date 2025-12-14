@@ -1,0 +1,34 @@
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+
+
+<StackPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController" styleClass="root-pane">
+    <children>
+        <!-- The Card Container -->
+        <VBox alignment="CENTER" spacing="20" styleClass="login-box">
+            <children>
+                <!-- Headers -->
+                <Label text="ClinicCare" styleClass="title" />
+                <Label text="Bienvenue sur votre portail" styleClass="subtitle" />
+
+                <!-- Inputs -->
+                <TextField fx:id="usernameField" promptText="Nom d'utilisateur" styleClass="input" />
+                <PasswordField fx:id="passwordField" promptText="Mot de passe" styleClass="input" />
+                <ComboBox fx:id="roleBox" promptText="Sélectionnez votre rôle" styleClass="input" />
+                
+                <!-- Spacer -->
+                <Region prefHeight="10" />
+
+                <!-- Actions -->
+                <Button text="Se connecter" onAction="#onLogin" styleClass="primary" />
+                
+                <!-- Footer -->
+                <Label text="Mot de passe oublié ?" styleClass="footer-link" />
+            </children>
+        </VBox>
+    </children>
+</StackPane>
+
