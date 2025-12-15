@@ -25,8 +25,8 @@ public class LoginController {
                 "Admin",
                 "Medecin",
                 "Infermier",
-                "Comptable"
-        );
+                "Comptable",
+                "secretaire");
     }
 
     @FXML
@@ -42,16 +42,18 @@ public class LoginController {
             if (role.equals("Admin")) {
                 // Charger l'interface Admin
                 Parent root = FXMLLoader.load(
-                        getClass().getResource("/fxml/admin.fxml")
-                );
+                        getClass().getResource("/fxml/admin.fxml"));
 
-                Stage stage = (Stage) usernameField
-                        .getScene()
-                        .getWindow();
+                // Seamless transition: Replace root instead of new Scene
+                usernameField.getScene().setRoot(root);
 
-                stage.setScene(new Scene(root));
-                stage.setTitle("Admin");
-                stage.show();
+            } else if (role.equalsIgnoreCase("secretaire")) {
+                // Charger l'interface Secretaire
+                Parent root = FXMLLoader.load(
+                        getClass().getResource("/fxml/secretary.fxml"));
+
+                // Seamless transition: Replace root instead of new Scene
+                usernameField.getScene().setRoot(root);
 
             } else {
                 showAlert("Info",
