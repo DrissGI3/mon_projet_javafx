@@ -1,9 +1,12 @@
 package controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class SecretaryController {
 
@@ -59,7 +62,27 @@ public class SecretaryController {
 
     @FXML
     private void handleManagePatients() {
-        System.out.println("Navigate to Patients");
+        try {
+            System.out.println("Navigate to Patients");
+
+            // Get current stage
+            Stage stage = (Stage) btnPatients.getScene().getWindow();
+
+            // Load patient FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/patient.fxml"));
+            Scene scene = new Scene(loader.load());
+
+            // Apply stylesheet
+            scene.getStylesheets().add(getClass().getResource("/css/patient.css").toExternalForm());
+
+            // Set scene
+            stage.setScene(scene);
+            stage.setTitle("ClinicCare - Gestion des Patients");
+
+        } catch (Exception e) {
+            System.err.println("Error navigating to Patient Interface: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     @FXML

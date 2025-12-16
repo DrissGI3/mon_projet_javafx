@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxWidth="Infinity" maxHeight="Infinity" style="-fx-background-color: #f4f7f9;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PatientController" stylesheets="@../css/patient.css">
+
+    <!-- TOP NAVIGATION TABS -->
+    <top>
+        <VBox>
+            <!-- Tab Navigation -->
+            <HBox spacing="0" style="-fx-background-color: #17a2b8; -fx-padding: 0;">
+                <Button text="Home" styleClass="nav-tab" onAction="#handleHomeTab" prefWidth="150" prefHeight="50"/>
+                <Button text="Patients" styleClass="nav-tab-active" prefWidth="150" prefHeight="50"/>
+                <Button text="Rendez-vous" styleClass="nav-tab" onAction="#handleRendezVousTab" prefWidth="150" prefHeight="50"/>
+                <Button text="Traitements" styleClass="nav-tab" onAction="#handleTraitementsTab" prefWidth="150" prefHeight="50"/>
+                <Button text="Aide" styleClass="nav-tab" onAction="#handleAideTab" prefWidth="150" prefHeight="50"/>
+                <Button text="User" styleClass="nav-tab" onAction="#handleUserTab" prefWidth="150" prefHeight="50"/>
+            </HBox>
+            
+            <!-- Search and Actions Bar -->
+            <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-background-color: white; -fx-padding: 15 20; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 2);">
+                <Label text="Id" style="-fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+                
+                <TextField fx:id="searchField" promptText="Rechercher..." prefWidth="250" style="-fx-background-radius: 5; -fx-padding: 8 12;"/>
+                
+                <Button fx:id="btnSearch" text="Rechercher" onAction="#handleSearch" styleClass="btn-search"/>
+                
+                <ComboBox fx:id="filterComboBox" promptText="rechercher par" prefWidth="150" styleClass="combo-filter"/>
+                
+                <ComboBox fx:id="sortComboBox" promptText="None" prefWidth="120" styleClass="combo-sort"/>
+                
+                <!-- Spacer -->
+                <HBox HBox.hgrow="ALWAYS"/>
+                
+                <!-- Action Buttons -->
+                <Button fx:id="btnAddPatient" text="Ajouter Patient" onAction="#handleAddPatient" styleClass="btn-add"/>
+                <Button fx:id="btnDeleteAll" text="Supprimer Tous" onAction="#handleDeleteAll" styleClass="btn-delete-all"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <!-- MAIN CONTENT - PATIENT TABLE -->
+    <center>
+        <VBox style="-fx-padding: 20;">
+            <TableView fx:id="patientTable" styleClass="patient-table" VBox.vgrow="ALWAYS">
+                <columns>
+                    <!-- ID Column -->
+                    <TableColumn fx:id="colId" text="Id" prefWidth="60" styleClass="table-header">
+                        <cellValueFactory>
+                            <javafx.scene.control.cell.PropertyValueFactory property="id" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    
+                    <!-- Email Column -->
+                    <TableColumn fx:id="colEmail" text="Email" prefWidth="220" styleClass="table-header">
+                        <cellValueFactory>
+                            <javafx.scene.control.cell.PropertyValueFactory property="email" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    
+                    <!-- Full Name Column -->
+                    <TableColumn fx:id="colFullName" text="Nom Complet" prefWidth="180" styleClass="table-header">
+                        <cellValueFactory>
+                            <javafx.scene.control.cell.PropertyValueFactory property="fullName" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    
+                    <!-- Age Column -->
+                    <TableColumn fx:id="colAge" text="Age" prefWidth="60" styleClass="table-header">
+                        <cellValueFactory>
+                            <javafx.scene.control.cell.PropertyValueFactory property="age" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    
+                    <!-- Gender Column -->
+                    <TableColumn fx:id="colGender" text="Sexe" prefWidth="80" styleClass="table-header">
+                        <cellValueFactory>
+                            <javafx.scene.control.cell.PropertyValueFactory property="gender" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    
+                    <!-- Treatments Column (Placeholder) -->
+                    <TableColumn fx:id="colTreatments" text="Traitements" prefWidth="120" styleClass="table-header">
+                        <cellValueFactory>
+                            <javafx.scene.control.cell.PropertyValueFactory property="treatments" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    
+                    <!-- Actions Column -->
+                    <TableColumn fx:id="colActions" text="Actions" prefWidth="360" styleClass="table-header" sortable="false">
+                    </TableColumn>
+                </columns>
+                
+                <placeholder>
+                    <Label text="Aucun patient trouvé" style="-fx-text-fill: #95a5a6; -fx-font-size: 16px;"/>
+                </placeholder>
+            </TableView>
+        </VBox>
+    </center>
+
+</BorderPane>
