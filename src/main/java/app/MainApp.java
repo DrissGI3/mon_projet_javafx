@@ -9,6 +9,9 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        // Initialize database
+        models.DatabaseInitializer.initialize();
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
         Scene scene = new Scene(loader.load());
         scene.getStylesheets().add(getClass().getResource("/css/login.css").toExternalForm());

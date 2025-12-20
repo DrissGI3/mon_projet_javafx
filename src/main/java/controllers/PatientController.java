@@ -5,10 +5,12 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+
 import models.DatabaseConnection;
 import models.Patient;
 import models.PatientDAO;
@@ -262,11 +264,12 @@ public class PatientController {
     private void handleHomeTab() {
         System.out.println("🏠 Navigate to Home");
         try {
-            Stage stage = (Stage) patientTable.getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/secretary.fxml"));
-            Scene scene = new Scene(loader.load());
-            scene.getStylesheets().add(getClass().getResource("/css/admin.css").toExternalForm());
-            stage.setScene(scene);
+            // Seamless transition: Replace root instead of new Scene
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
+            patientTable.getScene().setRoot(root);
+
+            // Update title
+            ((Stage) patientTable.getScene().getWindow()).setTitle("Login");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -274,12 +277,25 @@ public class PatientController {
 
     @FXML
     private void handleRendezVousTab() {
-        System.out.println("📅 Rendez-vous tab (not implemented)");
+        System.out.println("📅 Navigate to Rendez-vous");
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/appointment.fxml"));
+            patientTable.getScene().setRoot(root);
+            ((Stage) patientTable.getScene().getWindow()).setTitle("Gestion Rendez-vous");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     private void handleTraitementsTab() {
-        System.out.println("💊 Traitements tab (not implemented)");
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/treatment.fxml"));
+            patientTable.getScene().setRoot(root);
+            ((Stage) patientTable.getScene().getWindow()).setTitle("Gestion Traitements");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

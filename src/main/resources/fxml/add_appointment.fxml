@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox spacing="15.0" style="-fx-background-color: white; -fx-padding: 25;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddAppointmentController">
+   <children>
+      <Label text="Nouveau Rendez-vous" textFill="#17a2b8">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <GridPane hgap="10.0" vgap="12.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="120.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="250.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Patient :" GridPane.rowIndex="0">
+               <font><Font name="System Bold" size="13.0" /></font>
+            </Label>
+            <ComboBox fx:id="patientComboBox" prefHeight="35.0" prefWidth="250.0" promptText="Choisir un patient" style="-fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            
+            <Label text="Doctor ID :" GridPane.rowIndex="1">
+               <font><Font name="System Bold" size="13.0" /></font>
+            </Label>
+            <TextField fx:id="doctorIdField" prefHeight="35.0" prefWidth="250.0" promptText="ID du médecin" style="-fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+            <Label text="Date :" GridPane.rowIndex="2">
+               <font><Font name="System Bold" size="13.0" /></font>
+            </Label>
+            <DatePicker fx:id="datePicker" prefHeight="35.0" prefWidth="250.0" style="-fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            
+            <Label text="Heure (HH:mm) :" GridPane.rowIndex="3">
+               <font><Font name="System Bold" size="13.0" /></font>
+            </Label>
+            <TextField fx:id="timeField" prefHeight="35.0" prefWidth="250.0" promptText="ex: 09:00" style="-fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            
+            <Label text="Statut :" GridPane.rowIndex="4">
+               <font><Font name="System Bold" size="13.0" /></font>
+            </Label>
+            <ComboBox fx:id="statusComboBox" prefHeight="35.0" prefWidth="250.0" style="-fx-background-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+            <Label text="Motif :" GridPane.rowIndex="5">
+               <font><Font name="System Bold" size="13.0" /></font>
+            </Label>
+            <TextArea fx:id="reasonArea" prefHeight="80.0" prefWidth="250.0" promptText="Raison..." style="-fx-background-radius: 5;" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+         </children>
+      </GridPane>
+      <HBox alignment="CENTER_RIGHT" spacing="15.0">
+         <children>
+            <Button onAction="#handleCancel" prefHeight="35.0" prefWidth="90.0" style="-fx-background-color: #6c757d; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;" text="Annuler" />
+            <Button onAction="#handleSave" prefHeight="35.0" prefWidth="110.0" style="-fx-background-color: #28a745; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;" text="Enregistrer" />
+         </children>
+      </HBox>
+   </children>
+</VBox>

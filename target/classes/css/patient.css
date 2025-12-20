@@ -22,8 +22,8 @@
     border-color: transparent;
     -fx-border-width: 0;
     border-width: 0;
-    -fx-padding: 0;
-    padding: 0;
+    -fx-padding: 10 20;
+    padding: 10px 20px;
 }
 
 .nav-tab:hover {
@@ -42,8 +42,8 @@
     border-color: transparent;
     -fx-border-width: 0;
     border-width: 0;
-    -fx-padding: 0;
-    padding: 0;
+    -fx-padding: 10 20;
+    padding: 10px 20px;
 }
 
 /* Search Button */

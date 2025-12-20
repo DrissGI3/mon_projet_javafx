@@ -39,6 +39,9 @@ public class LoginController {
         }
 
         try {
+            // Set session role
+            models.Session.setSession(usernameField.getText(), role);
+
             if (role.equals("Admin")) {
                 // Charger l'interface Admin
                 Parent root = FXMLLoader.load(
@@ -50,9 +53,15 @@ public class LoginController {
             } else if (role.equalsIgnoreCase("secretaire")) {
                 // Charger l'interface Secretaire
                 Parent root = FXMLLoader.load(
-                        getClass().getResource("/fxml/secretary.fxml"));
+                        getClass().getResource("/fxml/patient.fxml"));
 
                 // Seamless transition: Replace root instead of new Scene
+                usernameField.getScene().setRoot(root);
+
+            } else if (role.equalsIgnoreCase("Medecin")) {
+                // Charger l'interface Docteur
+                Parent root = FXMLLoader.load(
+                        getClass().getResource("/fxml/doctor.fxml"));
                 usernameField.getScene().setRoot(root);
 
             } else {

@@ -19,19 +19,19 @@
         <VBox>
             <!-- Tab Navigation -->
             <HBox spacing="0" style="-fx-background-color: #17a2b8; -fx-padding: 0;">
-                <Button text="Home" styleClass="nav-tab" onAction="#handleHomeTab" prefWidth="150" prefHeight="50"/>
-                <Button text="Patients" styleClass="nav-tab-active" prefWidth="150" prefHeight="50"/>
-                <Button text="Rendez-vous" styleClass="nav-tab" onAction="#handleRendezVousTab" prefWidth="150" prefHeight="50"/>
-                <Button text="Traitements" styleClass="nav-tab" onAction="#handleTraitementsTab" prefWidth="150" prefHeight="50"/>
-                <Button text="Aide" styleClass="nav-tab" onAction="#handleAideTab" prefWidth="150" prefHeight="50"/>
-                <Button text="User" styleClass="nav-tab" onAction="#handleUserTab" prefWidth="150" prefHeight="50"/>
+                <Button text="Home" styleClass="nav-tab" onAction="#handleHomeTab"/>
+                <Button text="Patients" styleClass="nav-tab-active"/>
+                <Button text="Rendez-vous" styleClass="nav-tab" onAction="#handleRendezVousTab"/>
+                <Button text="Traitements" styleClass="nav-tab" onAction="#handleTraitementsTab"/>
+                <Button text="Aide" styleClass="nav-tab" onAction="#handleAideTab"/>
+                <Button text="User" styleClass="nav-tab" onAction="#handleUserTab"/>
             </HBox>
             
             <!-- Search and Actions Bar -->
             <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-background-color: white; -fx-padding: 15 20; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 2);">
                 <Label text="Id" style="-fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
                 
-                <TextField fx:id="searchField" promptText="Rechercher..." prefWidth="250" style="-fx-background-radius: 5; -fx-padding: 8 12;"/>
+                <TextField fx:id="searchField" promptText="Rechercher..." prefWidth="200" style="-fx-background-radius: 5; -fx-padding: 8 12;"/>
                 
                 <Button fx:id="btnSearch" text="Rechercher" onAction="#handleSearch" styleClass="btn-search"/>
                 

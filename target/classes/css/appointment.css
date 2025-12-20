@@ -1,0 +1,47 @@
+/* appointment.css */
+
+.nav-tab {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-padding: 10 20;
+    -fx-background-radius: 0;
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+}
+
+.nav-tab:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav-tab-active {
+    -fx-background-color: white;
+    -fx-text-fill: #17a2b8;
+    -fx-padding: 10 20;
+    -fx-background-radius: 0;
+    -fx-font-weight: bold;
+}
+
+.btn-add {
+    -fx-background-color: #28a745;
+    -fx-text-fill: white;
+    -fx-padding: 10 20;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+}
+
+.btn-add:hover {
+    -fx-background-color: #218838;
+}
+
+.table-view {
+    -fx-background-color: white;
+    -fx-background-radius: 5;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 0);
+}
+
+.table-view .column-header {
+    -fx-background-color: #f8f9fa;
+    -fx-text-fill: #495057;
+    -fx-font-weight: bold;
+}
