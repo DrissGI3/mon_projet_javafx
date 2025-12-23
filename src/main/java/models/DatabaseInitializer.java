@@ -27,7 +27,7 @@ public class DatabaseInitializer {
             try (Connection conn = DriverManager.getConnection(SERVER_URL + DB_NAME, USER, PASSWORD);
                     Statement stmt = conn.createStatement()) {
 
-                // Patients table
+                // Patients table (updated with medical info)
                 stmt.executeUpdate("CREATE TABLE IF NOT EXISTS patients (" +
                         "id INT AUTO_INCREMENT PRIMARY KEY," +
                         "first_name VARCHAR(50) NOT NULL," +
@@ -38,6 +38,8 @@ public class DatabaseInitializer {
                         "email VARCHAR(100)," +
                         "address TEXT," +
                         "social_security_number VARCHAR(20)," +
+                        "allergies TEXT," +
+                        "chronic_diseases TEXT," +
                         "created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP" +
                         ")");
                 System.out.println("✅ Table 'patients' ensured.");
@@ -69,6 +71,33 @@ public class DatabaseInitializer {
                         "FOREIGN KEY (patient_id) REFERENCES patients(id) ON DELETE CASCADE" +
                         ")");
                 System.out.println("✅ Table 'treatments' ensured.");
+
+                // Consultations table (updated with physical exam fields)
+                stmt.executeUpdate("CREATE TABLE IF NOT EXISTS consultations (" +
+                        "id INT AUTO_INCREMENT PRIMARY KEY," +
+                        "appointment_id INT NOT NULL UNIQUE," +
+                        "clinical_signs TEXT," +
+                        "physical_exam TEXT," +
+                        "diagnosis TEXT," +
+                        "prescription TEXT," +
+                        "notes TEXT," +
+                        "created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP," +
+                        "FOREIGN KEY (appointment_id) REFERENCES appointments(id) ON DELETE CASCADE" +
+                        ")");
+                System.out.println("✅ Table 'consultations' ensured.");
+
+                // Prescribed Exams table
+                stmt.executeUpdate("CREATE TABLE IF NOT EXISTS prescribed_exams (" +
+                        "id INT AUTO_INCREMENT PRIMARY KEY," +
+                        "patient_id INT NOT NULL," +
+                        "doctor_id INT," +
+                        "exam_type VARCHAR(100)," +
+                        "description TEXT," +
+                        "status VARCHAR(20) DEFAULT 'Pending'," +
+                        "created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP," +
+                        "FOREIGN KEY (patient_id) REFERENCES patients(id) ON DELETE CASCADE" +
+                        ")");
+                System.out.println("✅ Table 'prescribed_exams' ensured.");
 
                 // Add sample data if empty
                 java.sql.ResultSet rs = stmt.executeQuery("SELECT COUNT(*) FROM patients");

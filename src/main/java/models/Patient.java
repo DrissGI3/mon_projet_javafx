@@ -14,12 +14,14 @@ public class Patient {
     private final StringProperty email;
     private final StringProperty address;
     private final StringProperty socialSecurityNumber;
+    private final StringProperty allergies;
+    private final StringProperty chronicDiseases;
     private final StringProperty createdAt;
 
     // Constructor with all parameters
     public Patient(int id, String firstName, String lastName, LocalDate dateOfBirth,
             String gender, String phone, String email, String address,
-            String socialSecurityNumber, String createdAt) {
+            String socialSecurityNumber, String allergies, String chronicDiseases, String createdAt) {
         this.id = new SimpleIntegerProperty(id);
         this.firstName = new SimpleStringProperty(firstName);
         this.lastName = new SimpleStringProperty(lastName);
@@ -29,12 +31,14 @@ public class Patient {
         this.email = new SimpleStringProperty(email);
         this.address = new SimpleStringProperty(address);
         this.socialSecurityNumber = new SimpleStringProperty(socialSecurityNumber);
+        this.allergies = new SimpleStringProperty(allergies);
+        this.chronicDiseases = new SimpleStringProperty(chronicDiseases);
         this.createdAt = new SimpleStringProperty(createdAt);
     }
 
     // Default constructor
     public Patient() {
-        this(0, "", "", null, "", "", "", "", "", "");
+        this(0, "", "", null, "", "", "", "", "", "", "", "");
     }
 
     // Getters for properties (for TableView binding)
@@ -72,6 +76,14 @@ public class Patient {
 
     public StringProperty socialSecurityNumberProperty() {
         return socialSecurityNumber;
+    }
+
+    public StringProperty allergiesProperty() {
+        return allergies;
+    }
+
+    public StringProperty chronicDiseasesProperty() {
+        return chronicDiseases;
     }
 
     public StringProperty createdAtProperty() {
@@ -115,6 +127,14 @@ public class Patient {
         return socialSecurityNumber.get();
     }
 
+    public String getAllergies() {
+        return allergies.get();
+    }
+
+    public String getChronicDiseases() {
+        return chronicDiseases.get();
+    }
+
     public String getCreatedAt() {
         return createdAt.get();
     }
@@ -156,6 +176,14 @@ public class Patient {
         this.socialSecurityNumber.set(ssn);
     }
 
+    public void setAllergies(String allergies) {
+        this.allergies.set(allergies);
+    }
+
+    public void setChronicDiseases(String chronicDiseases) {
+        this.chronicDiseases.set(chronicDiseases);
+    }
+
     public void setCreatedAt(String createdAt) {
         this.createdAt.set(createdAt);
     }
@@ -189,6 +217,7 @@ public class Patient {
                 ", name='" + getFullName() + '\'' +
                 ", email='" + getEmail() + '\'' +
                 ", age=" + getAge() +
+                ", allergies='" + getAllergies() + '\'' +
                 '}';
     }
 }

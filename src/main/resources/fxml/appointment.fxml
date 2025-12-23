@@ -16,6 +16,7 @@
                 <Button text="Home" styleClass="nav-tab" onAction="#handleHomeTab"/>
                 <Button text="Patients" styleClass="nav-tab" onAction="#handlePatientsTab"/>
                 <Button text="Rendez-vous" styleClass="nav-tab-active"/>
+                <Button text="Consultations" styleClass="nav-tab" onAction="#handleConsultationsTab"/>
                 <Button text="Traitements" styleClass="nav-tab" onAction="#handleTraitementsTab"/>
                 <Button text="Aide" styleClass="nav-tab" onAction="#handleAideTab"/>
                 <Button text="User" styleClass="nav-tab" onAction="#handleUserTab"/>
@@ -23,6 +24,7 @@
             <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-background-color: white; -fx-padding: 15 20;">
                 <Label text="Gestion des Rendez-vous" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
                 <HBox HBox.hgrow="ALWAYS"/>
+                <Button text="Démarrer Consultation" style="-fx-background-color: #28a745; -fx-text-fill: white; -fx-font-weight: bold;" onAction="#handleStartConsultation"/>
                 <Button text="Nouveau Rendez-vous" styleClass="btn-add" onAction="#handleNewAppointment"/>
             </HBox>
         </VBox>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane prefWidth="800" prefHeight="600" style="-fx-background-color: #f4f7f9;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Patient360Controller">
+    <top>
+        <HBox spacing="15" style="-fx-background-color: #2c3e50; -fx-padding: 15 20;" alignment="CENTER_LEFT">
+            <Button text="← Retour" onAction="#handleBack" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-weight: bold;"/>
+            <Label text="Dossier Médical - " style="-fx-font-size: 18px; -fx-text-fill: white;"/>
+            <Label fx:id="patientNameLabel" text="[Nom du Patient]" style="-fx-font-size: 18px; -fx-text-fill: white; -fx-font-weight: bold;"/>
+        </HBox>
+    </top>
+    <left>
+        <VBox spacing="15" prefWidth="250" style="-fx-background-color: white; -fx-padding: 20; -fx-border-color: #dee2e6; -fx-border-width: 0 1 0 0;">
+            <Label text="Infos Patient" style="-fx-font-weight: bold; -fx-font-size: 16px;"/>
+            <Separator />
+            <VBox spacing="5">
+                <Label text="Âge / Sexe:" style="-fx-text-fill: #7f8c8d;"/>
+                <Label fx:id="ageGenderLabel" text="35 ans / Masculin" style="-fx-font-weight: bold;"/>
+            </VBox>
+            <VBox spacing="5">
+                <Label text="Allergies:" style="-fx-text-fill: #e74c3c;"/>
+                <Label fx:id="allergiesLabel" text="Aucune" wrapText="true" style="-fx-font-weight: bold;"/>
+            </VBox>
+            <VBox spacing="5">
+                <Label text="Maladies Chroniques:" style="-fx-text-fill: #f39c12;"/>
+                <Label fx:id="chronicDiseasesLabel" text="Aucune" wrapText="true" style="-fx-font-weight: bold;"/>
+            </VBox>
+            <Separator />
+            <Button text="Modifier Infos Médicales" onAction="#handleEditMedicalInfo" maxWidth="Infinity" style="-fx-background-color: #3498db; -fx-text-fill: white;"/>
+        </VBox>
+    </left>
+    <center>
+        <TabPane tabClosingPolicy="UNAVAILABLE" styleClass="clinical-tabs">
+            <tabs>
+                <Tab text="Historique Consultations">
+                    <VBox spacing="10" style="-fx-padding: 15;">
+                        <TableView fx:id="historyTable" VBox.vgrow="ALWAYS">
+                            <columns>
+                                <TableColumn fx:id="colDate" text="Date" prefWidth="150" />
+                                <TableColumn fx:id="colDiagnosis" text="Diagnostic" prefWidth="250" />
+                                <TableColumn fx:id="colPrescription" text="Ordonnance" prefWidth="200" />
+                            </columns>
+                        </TableView>
+                    </VBox>
+                </Tab>
+                <Tab text="Traitements Subséquents">
+                    <VBox spacing="10" style="-fx-padding: 15;">
+                         <ListView fx:id="treatmentsList" VBox.vgrow="ALWAYS" />
+                    </VBox>
+                </Tab>
+                <Tab text="Examens Prescrits">
+                    <VBox spacing="10" style="-fx-padding: 15;">
+                        <ListView fx:id="examsList" VBox.vgrow="ALWAYS" />
+                        <Button text="Prescrire un examen" onAction="#handlePrescribeExam" style="-fx-background-color: #27ae60; -fx-text-fill: white;"/>
+                    </VBox>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
+</BorderPane>

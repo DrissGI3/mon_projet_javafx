@@ -36,6 +36,11 @@ public class DoctorController {
     }
 
     @FXML
+    private void handleConsultationsTab() {
+        switchScene("/fxml/consultation_list.fxml", "Historique Consultations");
+    }
+
+    @FXML
     private void handleLogout() {
         Session.clear();
         switchScene("/fxml/login.fxml", "Login");

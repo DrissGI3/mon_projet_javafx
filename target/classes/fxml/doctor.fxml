@@ -13,6 +13,7 @@
                 <Button text="Dashboard" styleClass="nav-tab-active"/>
                 <Button text="Patients" styleClass="nav-tab" onAction="#handlePatientsTab"/>
                 <Button text="Rendez-vous" styleClass="nav-tab" onAction="#handleRendezVousTab"/>
+                <Button text="Consultations" styleClass="nav-tab" onAction="#handleConsultationsTab"/>
                 <Button text="Traitements" styleClass="nav-tab" onAction="#handleTraitementsTab"/>
                 <Button text="Aide" styleClass="nav-tab" />
                 <Button text="Logout" styleClass="nav-tab" onAction="#handleLogout"/>

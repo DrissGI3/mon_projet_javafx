@@ -61,6 +61,35 @@ public class AppointmentController {
     }
 
     @FXML
+    private void handleStartConsultation() {
+        Appointment selected = appointmentTable.getSelectionModel().getSelectedItem();
+        if (selected == null) {
+            showAlert("Information", "Veuillez sélectionner un rendez-vous.");
+            return;
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/consultation.fxml"));
+            Parent root = loader.load();
+
+            ConsultationController controller = loader.getController();
+            controller.setAppointment(selected);
+
+            Stage stage = new Stage();
+            stage.setTitle("Consultation Médicale - " + selected.getPatientName());
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(appointmentTable.getScene().getWindow());
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+
+            loadAppointments(); // Refresh status if changed
+        } catch (Exception e) {
+            e.printStackTrace();
+            showAlert("Erreur", "Impossible d'ouvrir l'interface de consultation.");
+        }
+    }
+
+    @FXML
     private void handleNewAppointment() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/add_appointment.fxml"));
@@ -97,6 +126,11 @@ public class AppointmentController {
     @FXML
     private void handleTraitementsTab() {
         switchScene("/fxml/treatment.fxml", "Gestion Traitements");
+    }
+
+    @FXML
+    private void handleConsultationsTab() {
+        switchScene("/fxml/consultation_list.fxml", "Historique Consultations");
     }
 
     @FXML

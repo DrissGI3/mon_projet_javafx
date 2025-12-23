@@ -16,6 +16,7 @@
                 <Button text="Home" styleClass="nav-tab" onAction="#handleHomeTab"/>
                 <Button text="Patients" styleClass="nav-tab" onAction="#handlePatientsTab"/>
                 <Button text="Rendez-vous" styleClass="nav-tab" onAction="#handleRendezVousTab"/>
+                <Button text="Consultations" styleClass="nav-tab" onAction="#handleConsultationsTab"/>
                 <Button text="Traitements" styleClass="nav-tab-active"/>
                 <Button text="Aide" styleClass="nav-tab" />
                 <Button text="User" styleClass="nav-tab" />

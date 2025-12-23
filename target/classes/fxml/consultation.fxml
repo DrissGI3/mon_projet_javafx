@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="15" prefWidth="500" style="-fx-background-color: white; -fx-padding: 25;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ConsultationController">
+    <children>
+        <Label text="Consultation Médicale" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+        
+        <GridPane hgap="10" vgap="10">
+            <columnConstraints>
+                <ColumnConstraints prefWidth="120" />
+                <ColumnConstraints hgrow="ALWAYS" />
+            </columnConstraints>
+            <children>
+                <Label text="Patient:" GridPane.rowIndex="0" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+                <Label fx:id="patientLabel" text="[Nom du Patient]" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                
+                <Label text="Date RDV:" GridPane.rowIndex="1" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+                <Label fx:id="dateLabel" text="[Date]" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+            </children>
+        </GridPane>
+        
+        <Separator />
+        
+        <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: white;" prefHeight="400">
+            <VBox spacing="15">
+                <VBox spacing="5">
+                    <Label text="Signes Fonctionnels / Cliniques:" style="-fx-font-weight: bold;"/>
+                    <TextArea fx:id="clinicalSignsArea" prefHeight="80" wrapText="true" promptText="Saisissez les signes cliniques..."/>
+                </VBox>
+                
+                <VBox spacing="5">
+                    <Label text="Examen Physique:" style="-fx-font-weight: bold;"/>
+                    <TextArea fx:id="physicalExamArea" prefHeight="80" wrapText="true" promptText="Résultats de l'examen physique..."/>
+                </VBox>
+
+                <VBox spacing="5">
+                    <Label text="Diagnostic:" style="-fx-font-weight: bold;"/>
+                    <TextArea fx:id="diagnosisArea" prefHeight="80" wrapText="true" promptText="Saisissez le diagnostic ici..."/>
+                </VBox>
+                
+                <VBox spacing="5">
+                    <Label text="Ordonnance (Prescription):" style="-fx-font-weight: bold;"/>
+                    <TextArea fx:id="prescriptionArea" prefHeight="100" wrapText="true" promptText="Liste des médicaments et posologie..."/>
+                </VBox>
+                
+                <VBox spacing="5">
+                    <Label text="Notes additionnelles:" style="-fx-font-weight: bold;"/>
+                    <TextArea fx:id="notesArea" prefHeight="60" wrapText="true" promptText="Observations diverses..."/>
+                </VBox>
+            </VBox>
+        </ScrollPane>
+        
+        <HBox spacing="10" alignment="CENTER_RIGHT">
+            <Button text="Annuler" onAction="#handleCancel" style="-fx-padding: 8 20;"/>
+            <Button text="Enregistrer la Consultation" onAction="#handleSave" style="-fx-padding: 8 20; -fx-background-color: #28a745; -fx-text-fill: white; -fx-font-weight: bold;"/>
+        </HBox>
+    </children>
+</VBox>

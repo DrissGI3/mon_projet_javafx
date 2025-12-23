@@ -180,13 +180,19 @@ public class PatientController {
      */
     private void handleViewPatient(Patient patient) {
         System.out.println("👁️ View patient: " + patient);
-        showAlert(Alert.AlertType.INFORMATION, "Aperçu Patient",
-                "Patient: " + patient.getFullName() + "\n" +
-                        "Email: " + patient.getEmail() + "\n" +
-                        "Téléphone: " + patient.getPhone() + "\n" +
-                        "Âge: " + patient.getAge() + " ans\n" +
-                        "Adresse: " + patient.getAddress());
-        // TODO: Open edit dialog
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/patient_360.fxml"));
+            Parent root = loader.load();
+
+            Patient360Controller controller = loader.getController();
+            controller.setPatient(patient);
+
+            patientTable.getScene().setRoot(root);
+            ((Stage) patientTable.getScene().getWindow()).setTitle("Dossier Médical - " + patient.getFullName());
+        } catch (Exception e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Erreur", "Impossible d'ouvrir le dossier médical.");
+        }
     }
 
     /**
@@ -293,6 +299,17 @@ public class PatientController {
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/treatment.fxml"));
             patientTable.getScene().setRoot(root);
             ((Stage) patientTable.getScene().getWindow()).setTitle("Gestion Traitements");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleConsultationsTab() {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/consultation_list.fxml"));
+            patientTable.getScene().setRoot(root);
+            ((Stage) patientTable.getScene().getWindow()).setTitle("Historique Consultations");
         } catch (Exception e) {
             e.printStackTrace();
         }

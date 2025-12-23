@@ -19,9 +19,11 @@ public class TreatmentDAO {
                 ResultSet rs = stmt.executeQuery(query)) {
 
             while (rs.next()) {
-                LocalDate start = rs.getDate("start_date").toLocalDate();
-                Date endVal = rs.getDate("end_date");
-                LocalDate end = (endVal != null) ? endVal.toLocalDate() : null;
+                Date startSql = rs.getDate("start_date");
+                LocalDate start = (startSql != null) ? startSql.toLocalDate() : LocalDate.now();
+
+                Date endSql = rs.getDate("end_date");
+                LocalDate end = (endSql != null) ? endSql.toLocalDate() : null;
 
                 treatments.add(new Treatment(
                         rs.getInt("id"),
@@ -59,5 +61,42 @@ public class TreatmentDAO {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public static List<Treatment> getTreatmentsByPatientId(int patientId) {
+        List<Treatment> treatments = new ArrayList<>();
+        String query = "SELECT t.*, CONCAT(p.first_name, ' ', p.last_name) as patient_name " +
+                "FROM treatments t " +
+                "JOIN patients p ON t.patient_id = p.id " +
+                "WHERE t.patient_id = ? " +
+                "ORDER BY t.start_date DESC";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setInt(1, patientId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    Date startSql = rs.getDate("start_date");
+                    LocalDate start = (startSql != null) ? startSql.toLocalDate() : LocalDate.now();
+
+                    Date endSql = rs.getDate("end_date");
+                    LocalDate end = (endSql != null) ? endSql.toLocalDate() : null;
+
+                    treatments.add(new Treatment(
+                            rs.getInt("id"),
+                            rs.getInt("patient_id"),
+                            rs.getString("patient_name"),
+                            rs.getInt("doctor_id"),
+                            "Doctor #" + rs.getInt("doctor_id"),
+                            start,
+                            end,
+                            rs.getString("description"),
+                            rs.getString("status")));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return treatments;
     }
 }

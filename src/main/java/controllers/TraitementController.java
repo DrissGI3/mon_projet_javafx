@@ -89,6 +89,11 @@ public class TraitementController {
         switchScene("/fxml/appointment.fxml", "Gestion Rendez-vous");
     }
 
+    @FXML
+    private void handleConsultationsTab() {
+        switchScene("/fxml/consultation_list.fxml", "Historique Consultations");
+    }
+
     private void switchScene(String fxmlPath, String title) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));

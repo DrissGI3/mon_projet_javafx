@@ -1,12 +1,17 @@
 E:\java_projet\src\main\java\app\MainApp.java
 E:\java_projet\src\main\java\controllers\AddAppointmentController.java
 E:\java_projet\src\main\java\controllers\AppointmentController.java
+E:\java_projet\src\main\java\controllers\ConsultationController.java
+E:\java_projet\src\main\java\controllers\ConsultationListController.java
 E:\java_projet\src\main\java\controllers\DoctorController.java
 E:\java_projet\src\main\java\controllers\LoginController.java
+E:\java_projet\src\main\java\controllers\Patient360Controller.java
 E:\java_projet\src\main\java\controllers\PatientController.java
 E:\java_projet\src\main\java\controllers\TraitementController.java
 E:\java_projet\src\main\java\models\Appointment.java
 E:\java_projet\src\main\java\models\AppointmentDAO.java
+E:\java_projet\src\main\java\models\Consultation.java
+E:\java_projet\src\main\java\models\ConsultationDAO.java
 E:\java_projet\src\main\java\models\DatabaseConnection.java
 E:\java_projet\src\main\java\models\DatabaseInitializer.java
 E:\java_projet\src\main\java\models\Patient.java

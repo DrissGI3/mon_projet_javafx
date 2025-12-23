@@ -62,7 +62,7 @@ public class PatientDAO {
      */
     public static boolean addPatient(Patient patient) {
         String query = "INSERT INTO patients (first_name, last_name, date_of_birth, gender, " +
-                "phone, email, address, social_security_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                "phone, email, address, social_security_number, allergies, chronic_diseases) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DatabaseConnection.getConnection();
                 PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -75,6 +75,8 @@ public class PatientDAO {
             pstmt.setString(6, patient.getEmail());
             pstmt.setString(7, patient.getAddress());
             pstmt.setString(8, patient.getSocialSecurityNumber());
+            pstmt.setString(9, patient.getAllergies());
+            pstmt.setString(10, patient.getChronicDiseases());
 
             int rowsAffected = pstmt.executeUpdate();
 
@@ -96,8 +98,8 @@ public class PatientDAO {
      */
     public static boolean updatePatient(Patient patient) {
         String query = "UPDATE patients SET first_name = ?, last_name = ?, date_of_birth = ?, " +
-                "gender = ?, phone = ?, email = ?, address = ?, social_security_number = ? " +
-                "WHERE id = ?";
+                "gender = ?, phone = ?, email = ?, address = ?, social_security_number = ?, " +
+                "allergies = ?, chronic_diseases = ? WHERE id = ?";
 
         try (Connection conn = DatabaseConnection.getConnection();
                 PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -110,7 +112,9 @@ public class PatientDAO {
             pstmt.setString(6, patient.getEmail());
             pstmt.setString(7, patient.getAddress());
             pstmt.setString(8, patient.getSocialSecurityNumber());
-            pstmt.setInt(9, patient.getId());
+            pstmt.setString(9, patient.getAllergies());
+            pstmt.setString(10, patient.getChronicDiseases());
+            pstmt.setInt(11, patient.getId());
 
             int rowsAffected = pstmt.executeUpdate();
 
@@ -225,9 +229,11 @@ public class PatientDAO {
         String email = rs.getString("email");
         String address = rs.getString("address");
         String ssn = rs.getString("social_security_number");
-        String createdAt = rs.getTimestamp("created_at").toString();
+        String allergies = rs.getString("allergies");
+        String chronicDiseases = rs.getString("chronic_diseases");
+        String createdAt = rs.getTimestamp("created_at") != null ? rs.getTimestamp("created_at").toString() : "";
 
         return new Patient(id, firstName, lastName, dateOfBirth, gender,
-                phone, email, address, ssn, createdAt);
+                phone, email, address, ssn, allergies, chronicDiseases, createdAt);
     }
 }

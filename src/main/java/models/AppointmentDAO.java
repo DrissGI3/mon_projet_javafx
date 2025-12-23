@@ -25,8 +25,15 @@ public class AppointmentDAO {
             while (rs.next()) {
                 LocalDateTime createdAt = null;
                 Timestamp ts = rs.getTimestamp("created_at");
-                if (ts != null)
+                if (ts != null) {
                     createdAt = ts.toLocalDateTime();
+                }
+
+                Date dateSql = rs.getDate("appointment_date");
+                LocalDate date = (dateSql != null) ? dateSql.toLocalDate() : LocalDate.now();
+
+                Time timeSql = rs.getTime("appointment_time");
+                LocalTime time = (timeSql != null) ? timeSql.toLocalTime() : LocalTime.now();
 
                 appointments.add(new Appointment(
                         rs.getInt("id"),
@@ -34,8 +41,8 @@ public class AppointmentDAO {
                         rs.getString("patient_name"),
                         rs.getInt("doctor_id"),
                         "Doctor #" + rs.getInt("doctor_id"), // Placeholder for doctor name
-                        rs.getDate("appointment_date").toLocalDate(),
-                        rs.getTime("appointment_time").toLocalTime(),
+                        date,
+                        time,
                         rs.getString("reason"),
                         rs.getString("status"),
                         createdAt));
@@ -59,6 +66,19 @@ public class AppointmentDAO {
             pstmt.setTime(4, Time.valueOf(time));
             pstmt.setString(5, reason);
             pstmt.setString(6, status);
+            return pstmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static boolean updateStatus(int id, String status) {
+        String query = "UPDATE appointments SET status = ? WHERE id = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setString(1, status);
+            pstmt.setInt(2, id);
             return pstmt.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
